@@ -2,9 +2,15 @@ import java.util.*;
 public class bronze{
 
 
-//  public int[][] stomp(int[][] board){
-
-//  }
+  public int[][] stomp(int[][] board, int R, int C){
+    row = R - 1;
+    col = C - 1;
+    for(int i = 0; i < 3; i++){
+      for(int j = 0; j < 3; j++){
+        
+      }
+    }
+  }
 
   public static int[][] reader(int rows, int cols, String[] args){
     //find length
@@ -15,6 +21,8 @@ public class bronze{
     }
     return ans;
   }
+
+
 
 
   public static void main(String[] args){
