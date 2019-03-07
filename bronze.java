@@ -1,18 +1,29 @@
 import java.util.*;
 import java.io.*;
+import java.lang.*;
 public class bronze{
 
 
-/*  public int[][] stomp(int[][] board, int R, int C){
+  public int[][] stomp(int[][] board, int R, int C, int E){
     int row = R - 1;
     int col = C - 1;
+    int max = 0;
+    int
     for(int i = 0; i < 3; i++){
       for(int j = 0; j < 3; j++){
-
+        if(board[R + i][C + j] > max) max = board[R + i][C + j];
+      }
+    }
+    //find the max elevation then subtract the depth of digging
+    for(int i = 0; i < 3; i++){
+      for(int j = 0; j < 3; j++){
+        //if elevation is too lpw doesnt dig, only digs to max - elevation
+        if(board[R + i][C + j] > max - E){
+          board[R + i][C + j] = max - E;
+        }
       }
     }
   }
-  */
 
 
 
