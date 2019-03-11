@@ -38,7 +38,7 @@ public class USACO{
       }
     }
 
-
+  
     return board;
 
   }
@@ -46,20 +46,21 @@ public class USACO{
   private static int[][] depths(int[][] board, int E){
     for(int i = 0; i < board.length; i++){
       for(int j = 0; j < board[i].length; j++){
-        if(E > board[i][j]){
+        if(E < board[i][j]){
            board[i][j] = 0;
          } else {
-        board[i][j]-=E;
+        board[i][j] = E - board[i][j];
         }
       }
-    } return board;
+    }
+    System.out.println(toString(board));
+    return board;
   }
 
   private static int volume(int[][] board, int E){
     int counter = 0;
     for(int i = 0; i < board.length; i++){
       for(int j = 0; j < board[i].length; j++){
-        if(board[i][j] < E) counter += E-board[i][j];
         counter += board[i][j];
       }
     }
@@ -118,7 +119,7 @@ public class USACO{
     */
 
     //now go through the list N of commands
-    System.out.println(toString(pasture));
+
     for(int i = 0; i < N.length; i++){
 
       stomp(pasture, N[i][0], N[i][1], N[i][2]);
