@@ -137,14 +137,17 @@ public static int silver(String filename) throws FileNotFoundException{
     Scanner s = new Scanner(f);
     boolean[][] land;
     int N = Integer.parseInt(s.next());
+    System.out.println(N);
     int M = Integer.parseInt(s.next());
+    System.out.println(M);
     int T = Integer.parseInt(s.next());
+    System.out.println(T);
     land = new boolean[N][M];
     int[][] moves = new int[N][M];
     //copies the grass and trees into the land array
     for(int r = 0; r < N; r++){
       String word = s.next();
-      for(int c = 0; c < word.length(); c++){
+      for(int c = 0; c < M; c++){
         System.out.println(word);
         //fill the land array
         land[r][c] =
