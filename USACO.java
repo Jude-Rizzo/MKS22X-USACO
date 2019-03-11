@@ -47,9 +47,9 @@ public class USACO{
     for(int i = 0; i < board.length; i++){
       for(int j = 0; j < board[i].length; j++){
         if(E < board[i][j]){
-           board[i][j] = 0;
-         } else {
-        board[i][j] = E - board[i][j];
+          board[i][j] = 0;
+        } else {
+          board[i][j] = E - board[i][j];
         }
       }
     }
@@ -112,46 +112,73 @@ public class USACO{
     }
     /*System.out.println(N.length);
     for(int i = 0; i < N.length; i++){
-      for(int j = 0; j < N[0].length; j++ ){
-        System.out.print(N[i][j]);
-      }
-    }
-    */
+    for(int j = 0; j < N[0].length; j++ ){
+    System.out.print(N[i][j]);
+  }
+}
+*/
 
-    //now go through the list N of commands
+//now go through the list N of commands
 
-    for(int i = 0; i < N.length; i++){
+for(int i = 0; i < N.length; i++){
 
-      stomp(pasture, N[i][0], N[i][1], N[i][2]);
+  stomp(pasture, N[i][0], N[i][1], N[i][2]);
 
-    }
-    //System.out.println(toString(pasture));
-    depths(pasture, elevation);
-    return volume(pasture, elevation);
+}
+//System.out.println(toString(pasture));
+depths(pasture, elevation);
+return volume(pasture, elevation);
 }
 
 
 
 //Silver
 public static int silver(String filename) throws FileNotFoundException{
-    File f = new File(filename);
-    Scanner file = new Scanner(f);
-    boolean[][] land;
-    int N = Integer.parseInt(file.next());
-    int M = Integer.parseInt(file.next());
-    int T = Integer.parseInt(file.next());
-    land = new boolean[N][M];
-    int[][] moves = new int[N][M];
-    //copies the grass and trees into the land array
-    for(int r = 0; r < N; r++){
-      String word = file.next();
-      for(int c = 0; c < M; c++){
-        //fill the land array
-        land[r][c] = (word.charAt(c) != '*');
+  File f = new File(filename);
+  Scanner file = new Scanner(f);
+  boolean[][] land;
+  int N = Integer.parseInt(file.next());
+  int M = Integer.parseInt(file.next());
+  int T = Integer.parseInt(file.next());
+  land = new boolean[N][M];
+  int[][] moves = new int[N][M];
+  //stores the pasture in the land array
+  for(int r = 0; r < N; r++){
+    String word = file.next();
+    for(int c = 0; c < M; c++){
+      //puts in evrything
+      land[r][c] = (word.charAt(c) != '*');
+    }
+  }
+  int R1 = Integer.parseInt(file.next()) - 1;
+  int C1 = Integer.parseInt(file.next()) - 1;
+  int R2 = Integer.parseInt(file.next()) - 1;
+  System.out.println(toString(land));
+  moves[R1][C1] = 1;
+  int counter = (R1+C1)%2;
+  for (int t = 0; t < T; t++) {
+    for (int r = 0; r < N; r++) {
+      for (int c = (r + counter)%2; c < M; c += 2) {
+        if (land[r][c]) {
+          if (r > 0){
+             moves[r-1][c] += moves[r][c];
+          }
+          if (c > 0){
+            moves[r][c-1] += moves[r][c];
+          }
+          if (r < N-1){
+            moves[r+1][c] += moves[r][c];
+          }
+          if (c < M-1){
+            moves[r][c+1] += moves[r][c];
+          }
+        }
+        moves[r][c] = 0;
       }
     }
-    int R1 = Integer.parseInt(file.next()) - 1;
-   int C1 = Integer.parseInt(file.next()) - 1;
-   int R2 = Integer.parseInt(file.next()) - 1;
+    counter = (counter + 1)%2;
+  }
+  return moves[R2][C2];
+}
 
 }
