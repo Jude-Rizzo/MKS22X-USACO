@@ -144,7 +144,7 @@ public static int silver(String filename) throws FileNotFoundException{
     //copies the grass and trees into the land array
     for(int r = 0; r < N; r++){
       String word = s.next();
-      for(int c = 0; c < M; c++){
+      for(int c = 0; c < word.length(); c++){
         System.out.println(word);
         //fill the land array
         land[r][c] =
