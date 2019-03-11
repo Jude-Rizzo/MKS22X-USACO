@@ -4,6 +4,19 @@ import java.lang.*;
 public class USACO{
 
   //BRONZE
+
+  private static String toString(int[][] pasture){
+    String output = "";
+    for(int i = 0; i < pasture.length; i++){
+      for (int j = 0; j < pasture[i].length; j++){
+        output += pasture[i][j] + "  ";
+      }
+      output += "\n";
+    }
+    return output;
+  }
+
+
   private static int[][] stomp(int[][] board, int R, int C, int E){
     int row = R - 1;
     int col = C - 1;
@@ -42,10 +55,11 @@ public class USACO{
     } return board;
   }
 
-  private static int volume(int[][] board){
+  private static int volume(int[][] board, int E){
     int counter = 0;
     for(int i = 0; i < board.length; i++){
       for(int j = 0; j < board[i].length; j++){
+        if(board[i][j] < E) counter += E-board[i][j];
         counter += board[i][j];
       }
     }
@@ -104,13 +118,15 @@ public class USACO{
     */
 
     //now go through the list N of commands
+    System.out.println(toString(pasture));
     for(int i = 0; i < N.length; i++){
 
       stomp(pasture, N[i][0], N[i][1], N[i][2]);
 
     }
+    //System.out.println(toString(pasture));
     depths(pasture, elevation);
-    return volume(pasture);
+    return volume(pasture, elevation);
 }
 
 }
