@@ -11,15 +11,16 @@ public class USACO{
 
     for(int i = 0; i < 3; i++){
       for(int j = 0; j < 3; j++){
-        if(board[R + i][C + j] > max) max = board[R + i][C + j];
+
+        if(board[row + i][col + j] > max) max = board[row + i][col + j];
       }
     }
     //find the max elevation then subtract the depth of digging
     for(int i = 0; i < 3; i++){
       for(int j = 0; j < 3; j++){
         //if elevation is too lpw doesnt dig, only digs to max - elevation
-        if(board[R + i][C + j] > max - E){
-          board[R + i][C + j] = max - E;
+        if(board[row + i][col + j] > max - E){
+          board[row + i][col + j] = max - E;
         }
       }
     } return board;
@@ -51,7 +52,7 @@ public class USACO{
 
 
 
-  public static void bronze(String fileName) throws FileNotFoundException{
+  public static int bronze(String fileName) throws FileNotFoundException{
     File f = new File(fileName);
     Scanner s = new Scanner(f);
     int rows = 0;
@@ -63,13 +64,13 @@ public class USACO{
     int[][] pasture = {{0,0}};
     int[][] N = {{1,1}};
     int lines = 0;
-    while(s.hasNextLine()){
+    while(s.hasNext()){
       if(lines == 0){
         //use the first line of the file to initialize all of teh variables
         rows = s.nextInt();
         cols = s.nextInt();
-        moves = s.nextInt();
         elevation = s.nextInt();
+        moves = s.nextInt();
         N = new int[moves][3];
         pasture = new int[rows][cols];
       } else if(lines > 0 && lines < rows + 1){
@@ -79,9 +80,10 @@ public class USACO{
         }
       }
       //lastly put the instructions into our 2D array
-      else if(lines > rows){
+      else if(lines > rows && lines < rows + moves + 1){
         for(int i = 0; i < 3; i++){
-          N[lines - (rows + 2)][i] = s.nextInt();
+          N[lines - (rows + 1)][i] = s.nextInt();
+
         }
       }
 
@@ -89,10 +91,19 @@ public class USACO{
       lines ++;
 
     }
+    /*System.out.println(N.length);
+    for(int i = 0; i < N.length; i++){
+      for(int j = 0; j < N[0].length; j++ ){
+        System.out.print(N[i][j]);
+      }
+    }
+    */
 
     //now go through the list N of commands
     for(int i = 0; i < N.length; i++){
+
       stomp(pasture, N[i][0], N[i][1], N[i][2]);
+
     }
     depths(pasture, elevation);
     return volume(pasture);
