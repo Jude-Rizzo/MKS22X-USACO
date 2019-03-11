@@ -53,7 +53,6 @@ public class USACO{
         }
       }
     }
-    System.out.println(toString(board));
     return board;
   }
 
@@ -134,26 +133,27 @@ return volume(pasture, elevation);
 
 //Silver
 public static int silver(String filename) throws FileNotFoundException{
-  File f = new File(filename);
-  Scanner file = new Scanner(f);
-  boolean[][] land;
-  int N = Integer.parseInt(file.next());
-  int M = Integer.parseInt(file.next());
-  int T = Integer.parseInt(file.next());
-  land = new boolean[N][M];
-  int[][] moves = new int[N][M];
-  //stores the pasture in the land array
-  for(int r = 0; r < N; r++){
-    String word = file.next();
-    for(int c = 0; c < M; c++){
-      //puts in evrything
-      land[r][c] = (word.charAt(c) != '*');
+    File f = new File(filename);
+    Scanner file = new Scanner(f);
+    boolean[][] land;
+    int N = Integer.parseInt(file.next());
+    int M = Integer.parseInt(file.next());
+    int T = Integer.parseInt(file.next());
+    land = new boolean[N][M];
+    int[][] moves = new int[N][M];
+    //copies the grass and trees into the land array
+    for(int r = 0; r < N; r++){
+      String word = file.next();
+      for(int c = 0; c < M; c++){
+        //fill the land array
+        land[r][c] = (word.charAt(c) != '*');
     }
   }
   int R1 = Integer.parseInt(file.next()) - 1;
   int C1 = Integer.parseInt(file.next()) - 1;
   int R2 = Integer.parseInt(file.next()) - 1;
-  System.out.println(toString(land));
+  int C2 = Integer.parseInt(file.next()) - 1;
+
   moves[R1][C1] = 1;
   int counter = (R1+C1)%2;
   for (int t = 0; t < T; t++) {

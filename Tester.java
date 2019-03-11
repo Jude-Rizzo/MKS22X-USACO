@@ -17,7 +17,7 @@ public class Tester {
         } catch (FileNotFoundException e) {
             System.out.println(e);
         }
-        /*try {
+        try {
             //System.out.println(USACO.silver("testCases/ctravel.2.in"));
             System.out.println("Silver:");
             for (int i = 1; i < 6; i++) {
@@ -31,6 +31,6 @@ public class Tester {
         } catch (FileNotFoundException e) {
             System.out.println(e);
 
-        } */
+        } 
     }
 }
