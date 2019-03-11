@@ -145,6 +145,7 @@ public static int silver(String filename) throws FileNotFoundException{
     for(int r = 0; r < N; r++){
       String word = s.next();
       for(int c = 0; c < M; c++){
+        System.out.println(word);
         //fill the land array
         land[r][c] =
         (word.charAt(c) != '*');
