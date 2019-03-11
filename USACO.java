@@ -94,6 +94,8 @@ public class USACO{
     for(int i = 0; i < N.length; i++){
       stomp(pasture, N[i][0], N[i][1], N[i][2]);
     }
+    depths(pasture, elevation);
+    return volume(pasture);
 }
 
 }
